@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>CN Clothing | Maison De Luxe</title>
+    <meta name="description" content="CN Clothing - Sri Lanka's leading premium fashion house." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --gold: #b8963e;
+            --gold-light: #d4af6a;
+            --gold-pale: #f0e0b0;
+            --dark: #0a0a0a;
+            --dark-2: #141414;
+            --dark-3: #1a1a1a;
+            --dark-4: #222222;
+            --cream: #f5f0e8;
+            --cream-2: #ede5d4;
+            --text-light: #e8e0d0;
+            --text-muted: #888880;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition-smooth: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text-light);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            cursor: none;
+            line-height: 1.6;
+        }
+
+        /* ── GLOBAL UI CLASSES OVERRIDDEN BY STYLE.CSS ── */
+
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 60px;
+            transition: padding .4s, background .4s, backdrop-filter .4s, border-color .4s;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            padding: 18px 60px;
+            background: rgba(10, 10, 10, .92);
+            backdrop-filter: blur(20px);
+            border-bottom-color: rgba(184, 150, 62, .15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-badge-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-badge {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .logo-badge-glow {
+            position: absolute;
+            inset: -8px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        .logo:hover .logo-badge-glow {
+            opacity: 0.35;
+        }
+
+        .logo:hover .logo-badge {
+            transform: rotateY(180deg);
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .logo-words {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-main {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 5px;
+            color: var(--white);
+        }
+
+        .logo-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: .65rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: .72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            position: relative;
+            transition: color .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* ── MOBILE MENU ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition-smooth);
+            transform-origin: center;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 100px 40px;
+            clip-path: circle(0% at 100% 0%);
+            transition: clip-path 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .mobile-menu.open {
+            clip-path: circle(150% at 100% 0%);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .mobile-nav-links a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .mobile-menu.open .mobile-nav-links a {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s 0.3s, transform 0.6s 0.3s;
+        }
+
+        .mobile-menu.open .mobile-nav-links li:nth-child(2) a {
+            transition-delay: 0.4s;
+        }
+
+        .mobile-menu.open .mobile-nav-links li:nth-child(3) a {
+            transition-delay: 0.5s;
+        }
+
+        .mobile-menu.open .mobile-nav-links li:nth-child(4) a {
+            transition-delay: 0.6s;
+        }
+
+        .mobile-menu.open .mobile-nav-links li:nth-child(5) a {
+            transition-delay: 0.7s;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 0 30px;
+            }
+
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-icon-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: .9rem;
+            cursor: pointer;
+            transition: color .3s;
+            position: relative;
+        }
+
+        .nav-icon-btn:hover {
+            color: var(--gold);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            background: var(--gold);
+            border-radius: 50%;
+            font-size: .6rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000&auto=format&fit=crop') center/cover;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .4) 60%, rgba(0, 0, 0, .1) 100%);
+        }
+
+        .hero-noise {
+            position: absolute;
+            inset: 0;
+            opacity: .04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 60px;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp .8s .4s forwards ease;
+        }
+
+        .eyebrow-line {
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .eyebrow-text {
+            font-size: .68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(4.5rem, 10vw, 9rem);
+            line-height: 1.12;
+            color: var(--white);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp .9s .6s forwards ease;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-title .title-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, .3);
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, .6);
+            max-width: 480px;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp .8s .8s forwards ease;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp .8s 1s forwards ease;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all .3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            border: 1px solid rgba(255, 255, 255, .25);
+            color: var(--white);
+            font-size: .72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .3s;
+            cursor: pointer;
+            background: none;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeUp .8s 1.4s forwards ease;
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            padding-top: 6px;
+        }
+
+        .scroll-wheel {
+            width: 2px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scrollAnim 1.5s ease infinite;
+        }
+
+        @keyframes scrollAnim {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(14px);
+                opacity: 0;
+            }
+        }
+
+        .scroll-text {
+            font-size: .65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .hero-year {
+            position: absolute;
+            right: 60px;
+            bottom: 50px;
+            z-index: 2;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, .03);
+            line-height: 1;
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 1s 1.2s forwards ease;
+        }
+
+        /* ── PRELOADER SYNC ── */
+        body:not(.ready) {
+            overflow: hidden;
+        }
+
+        body.ready .hero-eyebrow,
+        body.ready .hero-title,
+        body.ready .hero-desc,
+        body.ready .hero-ctas,
+        body.ready .hero-scroll,
+        body.ready .hero-year {
+            animation-play-state: running;
+        }
+
+        .hero-eyebrow,
+        .hero-title,
+        .hero-desc,
+        .hero-ctas,
+        .hero-scroll,
+        .hero-year {
+            animation-play-state: paused;
+        }
+
+        /* ── SPECIAL HERO REFINEMENT ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: -50px;
+            background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000&auto=format&fit=crop') center/cover;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .45) 60%, rgba(0, 0, 0, .2) 100%);
+        }
+
+        /* ── SECTION REVEALS ── */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── REFINED TYPOGRAPHY ── */
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(4.5rem, 10vw, 9.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s 0.8s forwards cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Overriding local reveals with global ones if necessary */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .logo-badge-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-badge-glow {
+            position: absolute;
+            inset: -5px;
+            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(8px);
+        }
+
+        .logo:hover .logo-badge-glow {
+            opacity: 0.3;
+        }
+
+        .logo-badge {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover .logo-badge {
+            transform: rotateY(180deg);
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+
+        /* ── MARQUEE ── */
+        .marquee {
+            overflow: hidden;
+            background: var(--gold);
+            padding: 14px 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            white-space: nowrap;
+            animation: marqueeScroll 25s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .68rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--dark);
+            padding: 0 40px;
+            font-weight: 500;
+        }
+
+        @keyframes marqueeScroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            padding: 120px 60px;
+        }
+
+        .section-sm {
+            padding: 80px 60px;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .section-label-line {
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-label-text {
+            font-size: .65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.15;
+            color: var(--white);
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        /* ── EDITORIAL ── */
+        .editorial {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 80vh;
+            background: var(--dark-2);
+        }
+
+        .editorial-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .editorial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.05);
+            transition: transform .8s ease;
+        }
+
+        .editorial-image:hover img {
+            transform: scale(1.04);
+        }
+
+        .editorial-image-badge {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .62rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            font-weight: 500;
+        }
+
+        .editorial-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+        }
+
+        .editorial-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, .55);
+            margin: 24px 0 40px;
+            max-width: 420px;
+        }
+
+        /* ── SPLIT ── */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 80vh;
+        }
+
+        .split-side {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .split-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s ease, filter .4s;
+            filter: brightness(.7);
+        }
+
+        .split-side:hover img {
+            transform: scale(1.06);
+            filter: brightness(.85);
+        }
+
+        .split-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .7) 0%, transparent 60%);
+        }
+
+        .split-content {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            right: 50px;
+        }
+
+        .split-tag {
+            font-size: .62rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .split-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3rem;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .split-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, .3);
+            padding-bottom: 4px;
+            transition: color .3s, border-color .3s;
+        }
+
+        .split-btn:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* ── SHOWCASE ── */
+        .showcase {
+            background: var(--dark-2);
+            padding: 120px 60px;
+        }
+
+        .showcase-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .showcase-img {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+
+        .showcase-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1);
+        }
+
+        .showcase-frame {
+            position: absolute;
+            inset: -15px;
+            border: 1px solid rgba(184, 150, 62, .15);
+            pointer-events: none;
+        }
+
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .hotspot-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: rgba(184, 150, 62, .3);
+            position: relative;
+        }
+
+        .hotspot-dot::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(184, 150, 62, .3);
+            animation: hotspotPulse 2s ease infinite;
+        }
+
+        @keyframes hotspotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .hotspot-card {
+            position: absolute;
+            left: 28px;
+            top: -10px;
+            background: rgba(10, 10, 10, .95);
+            border: 1px solid rgba(184, 150, 62, .2);
+            padding: 16px 20px;
+            min-width: 180px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s, transform .3s;
+            transform: translateX(-8px);
+        }
+
+        .hotspot:hover .hotspot-card {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hotspot-card h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+
+        .hotspot-card p {
+            font-size: .72rem;
+            color: var(--text-muted);
+        }
+
+        .showcase-content {
+            padding-left: 20px;
+        }
+
+        .showcase-content .section-title {
+            margin-bottom: 30px;
+        }
+
+        .showcase-content p {
+            font-size: 1rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 50px;
+            max-width: 420px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature {
+            padding: 24px;
+            border: 1px solid rgba(184, 150, 62, .1);
+            transition: border-color .3s, background .3s;
+        }
+
+        .feature:hover {
+            border-color: rgba(184, 150, 62, .3);
+            background: rgba(184, 150, 62, .03);
+        }
+
+        .feature i {
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .feature h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .feature p {
+            font-size: .8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── QUOTE ── */
+        .brand-quote {
+            background: var(--cream);
+            padding: 120px 60px;
+            text-align: center;
+        }
+
+        .brand-quote blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            color: var(--dark);
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .brand-quote cite {
+            display: block;
+            margin-top: 30px;
+            font-size: .65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        /* ── PRODUCTS ── */
+        .products-wrap {
+            background: var(--dark);
+        }
+
+        .products-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 100px 60px 60px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            padding: 0;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--dark-3);
+            cursor: pointer;
+        }
+
+        .product-card:nth-child(1) {
+            grid-row: span 2;
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease, filter .4s;
+            filter: brightness(.85);
+        }
+
+        .product-card:nth-child(1) .product-img {
+            aspect-ratio: auto;
+            height: 100%;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        .product-badge-new {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            font-weight: 500;
+            z-index: 3;
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .85) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity .4s;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 24px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform .4s, opacity .4s;
+        }
+
+        .product-card:hover .product-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .product-cat {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 16px;
+        }
+
+        .product-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-btn {
+            flex: 1;
+            padding: 10px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .62rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background .3s;
+        }
+
+        .product-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .product-btn-wish {
+            width: 44px;
+            flex: none;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: var(--white);
+            font-size: .85rem;
+            border: none;
+            cursor: pointer;
+            transition: background .3s, color .3s;
+        }
+
+        .product-btn-wish:hover,
+        .product-btn-wish.active {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials {
+            background: var(--dark-2);
+            padding: 120px 60px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 80px;
+        }
+
+        .testimonial-card {
+            background: var(--dark-3);
+            padding: 50px 40px;
+            border-bottom: 2px solid transparent;
+            transition: border-color .3s, background .3s;
+        }
+
+        .testimonial-card:hover {
+            border-bottom-color: var(--gold);
+            background: var(--dark-4);
+        }
+
+        .t-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        .t-stars i {
+            color: var(--gold);
+            font-size: .8rem;
+        }
+
+        .t-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .75);
+            margin-bottom: 30px;
+        }
+
+        .t-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .t-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .t-name {
+            font-size: .85rem;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .t-role {
+            font-size: .7rem;
+            color: var(--text-muted);
+        }
+
+        /* ── STATS ── */
+        .stats {
+            background: var(--gold);
+            padding: 80px 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 40px 20px;
+            border-right: 1px solid rgba(10, 10, 10, .15);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: .65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(10, 10, 10, .6);
+            margin-top: 8px;
+        }
+
+        /* ── COLLECTIONS ── */
+        .collections {
+            background: var(--dark);
+            padding: 120px 60px;
+        }
+
+        .collections-bento {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            grid-template-rows: 400px 300px;
+            gap: 4px;
+            margin-top: 70px;
+        }
+
+        .coll-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .coll-card:first-child {
+            grid-row: 1 / 3;
+        }
+
+        .coll-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(.65) saturate(1.1);
+            transition: transform .7s ease, filter .4s;
+        }
+
+        .coll-card:hover img {
+            transform: scale(1.06);
+            filter: brightness(.8) saturate(1.2);
+        }
+
+        .coll-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .75) 0%, transparent 50%);
+        }
+
+        .coll-info {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+        }
+
+        .coll-tag {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .coll-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+
+        .coll-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .62rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .coll-link:hover {
+            color: var(--gold);
+        }
+
+        /* ── NEWSLETTER ── */
+        .newsletter {
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1506152983658-59848cbb970d?q=80&w=1500&auto=format&fit=crop') center/cover;
+            padding: 140px 60px;
+            text-align: center;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .75);
+        }
+
+        .newsletter-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-inner p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .55);
+            line-height: 2;
+            margin: 20px 0 40px;
+        }
+
+        .nl-form {
+            display: flex;
+            gap: 0;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .nl-input {
+            flex: 1;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-right: none;
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .85rem;
+            outline: none;
+            transition: border-color .3s;
+        }
+
+        .nl-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .nl-input:focus {
+            border-color: rgba(184, 150, 62, .5);
+        }
+
+        .nl-btn {
+            padding: 16px 28px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background .3s;
+            white-space: nowrap;
+        }
+
+        .nl-btn:hover {
+            background: var(--gold-light);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid rgba(184, 150, 62, .1);
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding: 90px 60px 70px;
+        }
+
+        .footer-brand-desc {
+            font-size: .85rem;
+            line-height: 1.9;
+            color: var(--text-muted);
+            margin: 24px 0 30px;
+            max-width: 280px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: .85rem;
+            transition: border-color .3s, color .3s, background .3s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(184, 150, 62, .05);
+        }
+
+        .footer-heading {
+            font-size: .65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+        }
+
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-nav a {
+            font-size: .85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .fc-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .fc-item i {
+            color: var(--gold);
+            font-size: .8rem;
+            margin-top: 3px;
+        }
+
+        .fc-item span {
+            font-size: .85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            font-size: .72rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--gold);
+        }
+
+        /* ── CART SIDEBAR ── */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 420px;
+            height: 100vh;
+            background: var(--dark-2);
+            z-index: 990;
+            transform: translateX(100%);
+            transition: transform .4s ease;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(184, 150, 62, .1);
+        }
+
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .cart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .cart-head h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color .3s;
+        }
+
+        .cart-close:hover {
+            color: var(--white);
+        }
+
+        .cart-items-wrap {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 80px 0;
+            color: var(--text-muted);
+        }
+
+        .cart-empty i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 16px;
+            opacity: .3;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 90px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-size {
+            font-size: .7rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: .85rem;
+            color: var(--gold);
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: .8rem;
+            transition: color .3s;
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+
+        .cart-item-remove:hover {
+            color: #e05;
+        }
+
+        .cart-foot {
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .cart-total-label {
+            font-size: .7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .cart-total-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: .72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background .3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--gold-light);
+        }
+
+        /* ── SIZE MODAL ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            z-index: 980;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .size-modal {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 100%;
+            max-width: 540px;
+            background: var(--dark-2);
+            z-index: 985;
+            padding: 50px 50px 60px;
+            transition: transform .4s ease;
+            border-top: 1px solid rgba(184, 150, 62, .2);
+        }
+
+        .size-modal.open {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .size-modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .size-modal-cat {
+            font-size: .65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .size-label {
+            font-size: .65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .size-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .size-opt {
+            width: 56px;
+            height: 56px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            background: none;
+            color: var(--white);
+            font-size: .8rem;
+            cursor: pointer;
+            transition: all .3s;
+            letter-spacing: 1px;
+        }
+
+        .size-opt:hover,
+        .size-opt.active {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* ── OVERLAY ── */
+        .page-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            z-index: 850;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .page-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── NOTIFICATION ── */
+        .notif {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: var(--dark-2);
+            border: 1px solid rgba(184, 150, 62, .3);
+            padding: 18px 24px 18px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transform: translateX(120%);
+            transition: transform .4s ease;
+            min-width: 280px;
+        }
+
+        .notif.show {
+            transform: translateX(0);
+        }
+
+        .notif-icon {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .notif-text {
+            font-size: .82rem;
+            color: var(--white);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-card:nth-child(1) {
+                grid-row: span 1;
+            }
+
+            .product-card:nth-child(1) .product-img {
+                aspect-ratio: 3/4;
+                height: auto;
+            }
+
+            .collections-bento {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            .coll-card:first-child {
+                grid-row: span 1;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 24px;
+            }
+
+            nav.scrolled {
+                padding: 14px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .section {
+                padding: 80px 24px;
+            }
+
+            .hero-content {
+                padding: 0 24px;
+            }
+
+            .hero-scroll {
+                left: 24px;
+            }
+
+            .hero-year {
+                display: none;
+            }
+
+            .editorial {
+                grid-template-columns: 1fr;
+            }
+
+            .editorial-content {
+                padding: 50px 30px;
+            }
+
+            .split {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .split-side {
+                height: 60vw;
+            }
+
+            .showcase-inner {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .collections-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 50px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                padding: 20px 24px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- GLOBAL ELITE UI -->
+    <div class="scroll-progress"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+    <div class="page-shade"></div>
+
+    <!-- CINEMATIC PRELOADER (Curtain System) -->
+    <div id="preloader">
+        <div class="preloader-curtain left"></div>
+        <div class="preloader-curtain right"></div>
+        <div class="preloader-content">
+            <div class="preloader-logo">CN</div>
+            <div class="preloader-line"></div>
+            <div class="preloader-text">Maison De Luxe</div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar" class="navbar">
+        <a href="index.html" class="logo">
+            <div class="logo-badge-wrap">
+                <div class="logo-badge">CN</div>
+                <div class="logo-badge-glow"></div>
+            </div>
+            <div class="logo-words">
+                <span class="logo-main">CN CLOTHING</span>
+                <span class="logo-sub">Maison De Luxe ✦</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="collections.html">Lookbook</a></li>
+            <li><a href="about.html">Heritage</a></li>
+            <li><a href="contact.html">Concierge</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-icon-btn"><i class="fas fa-search"></i></button>
+            <button class="nav-icon-btn" id="cartToggle">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge cart-count" id="cartCount">0</span>
+            </button>
+            <div class="hamburger" id="ham">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
+            <li><a href="collections.html" class="nav-link">Lookbook</a></li>
+            <li><a href="about.html" class="nav-link">Heritage</a></li>
+            <li><a href="contact.html" class="nav-link">Concierge</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-noise"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">The 2025 Luxury Edit</span>
+            </div>
+            <h1 class="hero-title">
+                True<br>
+                <em>Luxury</em><br>
+                <span class="title-outline">Redefined.</span>
+            </h1>
+            <p class="hero-desc">Experience the fusion of bespoke Sri Lankan craftsmanship and global high-fashion
+                ethics. Each piece, a testament to the artisan's soul.</p>
+            <div class="hero-ctas">
+                <a href="shop.html" class="btn-gold">Explore Shop <i class="fas fa-arrow-right"></i></a>
+                <a href="collections.html" class="btn-ghost">2025 Lookbook</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-text">Scroll to Discover</span>
+        </div>
+        <div class="hero-year">2025</div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-item"><i class="fas fa-crown"></i>&nbsp; Premium Luxury Wear</span>
+            <span class="marquee-item"><i class="fas fa-truck"></i>&nbsp; Express Nationwide Delivery</span>
+            <span class="marquee-item"><i class="fas fa-star"></i>&nbsp; Handcrafted Designs</span>
+            <span class="marquee-item"><i class="fas fa-gem"></i>&nbsp; Bespoke Tailoring Available</span>
+            <span class="marquee-item"><i class="fas fa-shield-alt"></i>&nbsp; Guaranteed Quality</span>
+            <span class="marquee-item"><i class="fas fa-crown"></i>&nbsp; Premium Luxury Wear</span>
+            <span class="marquee-item"><i class="fas fa-truck"></i>&nbsp; Express Nationwide Delivery</span>
+            <span class="marquee-item"><i class="fas fa-star"></i>&nbsp; Handcrafted Designs</span>
+            <span class="marquee-item"><i class="fas fa-gem"></i>&nbsp; Bespoke Tailoring Available</span>
+            <span class="marquee-item"><i class="fas fa-shield-alt"></i>&nbsp; Guaranteed Quality</span>
+        </div>
+    </div>
+
+    <!-- EDITORIAL -->
+    <section class="editorial reveal">
+        <div class="editorial-image">
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200" alt="The Craft">
+            <div class="editorial-image-badge">2025 Edit</div>
+        </div>
+        <div class="editorial-content">
+            <div class="section-label">
+                <span class="section-label-line"></span>
+                <span class="section-label-text">The Narrative</span>
+            </div>
+            <h2 class="section-title">Crafting the<br><em>Future</em>.</h2>
+            <p>We don't just make clothes. We weave stories of survival, elegance, and uncompromising ethics. Every
+                garment at Maison CN is a testament to the artisan's soul — born from the heart of Sri Lanka.</p>
+            <div style="display:flex;gap:24px;align-items:center;">
+                <a href="#" class="btn-gold">Our Heritage <i class="fas fa-arrow-right"></i></a>
+                <span style="font-size:.65rem;letter-spacing:4px;color:var(--text-muted);text-transform:uppercase;">Est.
+                    2020</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPLIT -->
+    <div class="split">
+        <div class="split-side reveal-left">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1200" alt="Men's Edit">
+            <div class="split-overlay"></div>
+            <div class="split-content">
+                <span class="split-tag">✦ For Him</span>
+                <h3>Elite<br>Tailoring</h3>
+                <a href="#" class="split-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="split-side reveal-right">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" alt="Women's Edit">
+            <div class="split-overlay"></div>
+            <div class="split-content">
+                <span class="split-tag">✦ For Her</span>
+                <h3>Couture<br>Vision</h3>
+                <a href="#" class="split-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOWCASE -->
+    <section class="showcase">
+        <div class="showcase-inner">
+            <div class="showcase-img reveal-left">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200"
+                    alt="Signature Piece">
+                <div class="showcase-frame"></div>
+
+                <div class="hotspot" style="top:25%;left:20%;">
+                    <div class="hotspot-dot"></div>
+                    <div class="hotspot-card">
+                        <h5>Premium Silk</h5>
+                        <p>100% Grade A Mulberry Silk</p>
+                    </div>
+                </div>
+                <div class="hotspot" style="top:55%;left:55%;">
+                    <div class="hotspot-dot"></div>
+                    <div class="hotspot-card" style="left:auto;right:28px;">
+                        <h5>Hand-Stitched</h5>
+                        <p>48 hours of artisanal craft</p>
+                    </div>
+                </div>
+                <div class="hotspot" style="top:75%;left:30%;">
+                    <div class="hotspot-dot"></div>
+                    <div class="hotspot-card">
+                        <h5>Gold Hardware</h5>
+                        <p>Bespoke 24k plated accents</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-content reveal-right">
+                <div class="section-label">
+                    <span class="section-label-line"></span>
+                    <span class="section-label-text">The Signature Series</span>
+                </div>
+                <h2 class="section-title">A Masterpiece<br>in Every <em>Stitch</em>.</h2>
+                <p style="font-size:1rem;line-height:2;color:rgba(255,255,255,.5);margin:30px 0 50px;max-width:400px;">
+                    Every thread in a CN garment tells a story of survival, elegance, and unyielding Sri Lankan spirit.
+                    We create legacies you wear.</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-feather"></i>
+                        <h4>Ethical Sourcing</h4>
+                        <p>100% sustainable materials from local artisans.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-gem"></i>
+                        <h4>Bespoke Finish</h4>
+                        <p>Tailored for the modern visionary.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Eco Luxury</h4>
+                        <p>Carbon-neutral production since 2022.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <h4>Certified Quality</h4>
+                        <p>International luxury standards guaranteed.</p>
+                    </div>
+                </div>
+                <a href="#" class="btn-gold">The Maison Story <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="brand-quote">
+        <div class="reveal">
+            <blockquote>"Luxury is not about the price, but the soul that resides within the craft."</blockquote>
+            <cite>✦ Maison CN Philosophy</cite>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stats-grid reveal">
+            <div class="stat-item">
+                <div class="stat-num" data-target="10000">0</div>
+                <div class="stat-label">Clients Worldwide</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="25">0</div>
+                <div class="stat-label">Global Outlets</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="100">0</div>
+                <div class="stat-label">% Sustainable</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="50">0</div>
+                <div class="stat-label">Custom Designers</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="products-wrap" id="shop">
+        <div class="products-header reveal">
+            <div>
+                <div class="section-label">
+                    <span class="section-label-line"></span>
+                    <span class="section-label-text">Featured Pieces</span>
+                </div>
+                <h2 class="section-title">Luxury<br><em>Highlights</em>.</h2>
+            </div>
+            <a href="#" class="btn-ghost">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected by JS -->
+        </div>
+    </div>
+
+    <!-- COLLECTIONS -->
+    <section class="collections" id="collections">
+        <div class="reveal"
+            style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+            <div>
+                <div class="section-label">
+                    <span class="section-label-line"></span>
+                    <span class="section-label-text">Curated Selection</span>
+                </div>
+                <h2 class="section-title">The Collection<br><em>Vault</em>.</h2>
+            </div>
+            <a href="#" class="btn-ghost">All Collections <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="collections-bento reveal">
+            <div class="coll-card">
+                <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop"
+                    alt="Menswear">
+                <div class="coll-overlay"></div>
+                <div class="coll-info">
+                    <span class="coll-tag">✦ Sartorial Excellence</span>
+                    <div class="coll-name">MENSWEAR</div>
+                    <a href="#" class="coll-link">Discover Suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="coll-card">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop"
+                    alt="Womenswear">
+                <div class="coll-overlay"></div>
+                <div class="coll-info">
+                    <span class="coll-tag">✦ Haute Couture</span>
+                    <div class="coll-name">WOMENSWEAR</div>
+                    <a href="#" class="coll-link">Explore Edit <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="coll-card">
+                <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=800&auto=format&fit=crop"
+                    alt="Accessories">
+                <div class="coll-overlay"></div>
+                <div class="coll-info">
+                    <span class="coll-tag">✦ Essential Luxe</span>
+                    <div class="coll-name">ACCESSORIES</div>
+                    <a href="#" class="coll-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="coll-card">
+                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4389?q=80&w=800&auto=format&fit=crop"
+                    alt="Formal">
+                <div class="coll-overlay"></div>
+                <div class="coll-info">
+                    <span class="coll-tag">✦ Black Tie</span>
+                    <div class="coll-name">FORMAL EDIT</div>
+                    <a href="#" class="coll-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="reveal">
+            <div class="section-label">
+                <span class="section-label-line"></span>
+                <span class="section-label-text">Patrons of Maison</span>
+            </div>
+            <h2 class="section-title">A Legacy of<br><em>Satisfaction</em>.</h2>
+        </div>
+        <div class="testimonial-grid reveal">
+            <div class="testimonial-card">
+                <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="t-quote">"The craftsmanship at CN Clothing is unlike anything I've seen in Sri Lanka. The
+                    attention to detail in their bespoke suits is world-class."</div>
+                <div class="t-author">
+                    <div class="t-avatar">AS</div>
+                    <div>
+                        <div class="t-name">Amila Silva</div>
+                        <div class="t-role">CEO, TechFrontier</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="t-quote">"Their silk wrap dresses are a dream. The fabric quality and ethical sourcing make
+                    every purchase feel deeply meaningful."</div>
+                <div class="t-author">
+                    <div class="t-avatar">NP</div>
+                    <div>
+                        <div class="t-name">Niomi Perera</div>
+                        <div class="t-role">Fashion Consultant</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="t-quote">"From the moment I put on a CN piece, I understood what true luxury meant.
+                    Exceptional quality, every single time."</div>
+                <div class="t-author">
+                    <div class="t-avatar">RK</div>
+                    <div>
+                        <div class="t-name">Roshan Kumar</div>
+                        <div class="t-role">Entrepreneur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="newsletter-inner reveal">
+            <div class="section-label" style="justify-content:center;">
+                <span class="section-label-line"></span>
+                <span class="section-label-text">Exclusive Access</span>
+                <span class="section-label-line"></span>
+            </div>
+            <h2 class="section-title">Join the<br><em>Elite Circle</em>.</h2>
+            <p>Be the first to know about private sales, new collections, and exclusive fashion shows reserved for our
+                inner circle.</p>
+            <div class="nl-form">
+                <input type="email" class="nl-input" placeholder="Your email for the inner circle..." />
+                <button class="nl-btn">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-main">
+            <div>
+                <a href="#" class="logo">
+                    <div class="logo-badge-wrap">
+                        <div class="logo-badge">CN</div>
+                        <div class="logo-badge-glow"></div>
+                    </div>
+                    <div class="logo-words">
+                        <span class="logo-main">CN CLOTHING</span>
+                        <span class="logo-sub">Maison De Luxe ✦</span>
+                    </div>
+                </a>
+                <p class="footer-brand-desc">Crafting the future of fashion from the heart of Sri Lanka. Luxury, Ethics,
+                    Excellence — woven into every thread.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-heading">Maison</div>
+                <ul class="footer-nav">
+                    <li><a href="#">About Maison</a></li>
+                    <li><a href="#">Lookbooks</a></li>
+                    <li><a href="#">Private Shop</a></li>
+                    <li><a href="#">Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Services</div>
+                <ul class="footer-nav">
+                    <li><a href="#">Bespoke Tailoring</a></li>
+                    <li><a href="#">VIP Styling</a></li>
+                    <li><a href="#">Luxury Gifting</a></li>
+                    <li><a href="#">Global Concierge</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Heritage</div>
+                <div class="footer-contact">
+                    <div class="fc-item"><i class="fas fa-map-marker-alt"></i><span>No. 7, Elite Plaza,<br>Colombo 03,
+                            Sri Lanka</span></div>
+                    <div class="fc-item"><i class="fas fa-envelope"></i><span>prestige@cnclothing.lk</span></div>
+                    <div class="fc-item"><i class="fas fa-phone"></i><span>+94 11 234 5678</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 CN Clothing. The Pinnacle of Sartorial Elegance.</span>
+            <span><a href="#">Legal</a> &nbsp;|&nbsp; <a href="#">Sustainability</a> &nbsp;|&nbsp; <a
+                    href="#">Privacy</a></span>
+        </div>
+    </footer>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-head">
+            <h3>Your Order</h3>
+            <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-wrap" id="cartItemsWrap">
+            <div class="cart-empty"><i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty.</p>
+            </div>
+        </div>
+        <div class="cart-foot">
+            <div class="cart-total-row">
+                <span class="cart-total-label">Total</span>
+                <span class="cart-total-val" id="cartTotalVal">LKR 0</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- SIZE MODAL -->
+    <div class="size-modal" id="sizeModal">
+        <h3 class="size-modal-title" id="sizeModalName">Product Name</h3>
+        <span class="size-modal-cat" id="sizeModalCat">Category</span>
+        <span class="size-label">Select Size</span>
+        <div class="size-btns">
+            <button class="size-opt" data-s="XS">XS</button>
+            <button class="size-opt active" data-s="S">S</button>
+            <button class="size-opt" data-s="M">M</button>
+            <button class="size-opt" data-s="L">L</button>
+            <button class="size-opt" data-s="XL">XL</button>
+        </div>
+        <button class="btn-gold" style="width:100%;justify-content:center;" id="confirmAdd">Add to Order <i
+                class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        const products = [
+            { id: 1, name: 'CN Noir Essentials Hoodie', cat: "Men's Comfort Luxe", price: 5500, badge: 'Elite', img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop' },
+            { id: 2, name: 'CN Azure Premium Silk Dress', cat: "Women's Evening Edit", price: 7800, badge: 'Trending', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600&auto=format&fit=crop' },
+            { id: 3, name: 'CN Prestige Skeleton Chrono', cat: 'Timepiece Collection', price: 15200, badge: null, img: 'https://images.unsplash.com/photo-1542491592-b10029990b74?q=80&w=600&auto=format&fit=crop' },
+            { id: 4, name: 'CN Ivory Belted Trench Coat', cat: 'Signature Outerwear', price: 18500, badge: 'New', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop' },
+        ];
+
+        // Render products
+        const grid = document.getElementById('productsGrid');
+        if (grid) {
+            products.forEach(p => {
+                grid.innerHTML += `
+        <div class="product-card reveal" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-category="${p.cat}">
+            ${p.badge ? `<span class="product-badge-new">${p.badge}</span>` : ''}
+            <div class="product-visual">
+                <img class="product-img" src="${p.img}" alt="${p.name}">
+                <div class="product-overlay">
+                     <button class="btn-view" onclick="openSizeModal('${p.name}', ${p.price}, '${p.img}')">Quick View</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-cat">${p.cat}</div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-price">LKR ${p.price.toLocaleString()}</div>
+                <div class="product-btns">
+                    <button class="product-btn" onclick="openSizeModal('${p.name}', ${p.price}, '${p.img}')">Add to Order</button>
+                    <button class="product-btn-wish" onclick="toggleWishlist(this,'${p.name}')"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </div>`;
+            });
+        }
+
+        // Hero Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const bg = document.getElementById('heroBg');
+            if (!bg) return;
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            bg.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+        });
+    </script>
+</body>
+
+</html>
